@@ -14,4 +14,6 @@ class CustomColors {
   static const Color brand500 = Color(0xff56CCF2);
   static const Color information500 = Color(0xff2952CC);
   static const Color secondary500 = Color(0xffF27A47);
+
+  static const Color starColor = Color(0xffFCD240);
 }
