@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ThemeData theme() {
   return ThemeData(
     primaryColor: const Color(0xff101010), // Default 500
-    scaffoldBackgroundColor: const Color(0xffE7E7E7), // Light 200
+    scaffoldBackgroundColor: const Color(0xfff3f3f3), // Light 200
     dialogBackgroundColor: const Color(0xffB7B7B7), // Light 300
     fontFamily: 'Urbanist',
     colorScheme: const ColorScheme(
@@ -27,7 +27,7 @@ ThemeData theme() {
       ),
       displayMedium: TextStyle(
         color: Color(0xff070304),
-        fontSize: 32,
+        fontSize: 36,
         fontWeight: FontWeight.w800,
       ),
       displaySmall: TextStyle(
@@ -42,27 +42,27 @@ ThemeData theme() {
       ),
       headlineMedium: TextStyle(
         color: Color(0xff070304),
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
       headlineSmall: TextStyle(
         color: Color(0xff070304),
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
       titleLarge: TextStyle(
         color: Color(0xff070304),
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: FontWeight.w300,
       ),
       titleMedium: TextStyle(
         color: Color(0xff070304),
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: FontWeight.w200,
       ),
       titleSmall: TextStyle(
         color: Color(0xff070304),
-        fontSize: 16,
+        fontSize: 10,
         fontWeight: FontWeight.w100,
       ),
       bodyLarge: TextStyle(
