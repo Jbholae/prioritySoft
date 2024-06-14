@@ -9,13 +9,14 @@ class BrandNameHorizontalList extends StatefulWidget {
   final List items;
 
   @override
-  State<BrandNameHorizontalList> createState() => _BrandNameHorizontalListState();
+  State<BrandNameHorizontalList> createState() =>
+      _BrandNameHorizontalListState();
 }
 
 class _BrandNameHorizontalListState extends State<BrandNameHorizontalList> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    int selectedIndex = 0;
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.05,
       child: ListView.separated(
@@ -24,12 +25,9 @@ class _BrandNameHorizontalListState extends State<BrandNameHorizontalList> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              print('tap on index : $index');
               setState(() {
                 selectedIndex = index;
               });
-              print('updated selectedIndex to : $selectedIndex');
-
             },
             child: Text(
               widget.items[index],
