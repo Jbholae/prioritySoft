@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:prioritysoft/config/app_routes.dart';
 import 'package:prioritysoft/config/custom_color.dart';
+import 'package:prioritysoft/widgets/price_and_button.dart';
+import 'package:prioritysoft/widgets/review_card.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
@@ -9,13 +12,25 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  int quantity = 0;
+  int selectedSizeItem = 0;
+  List sizeItem = [
+    '38',
+    '39',
+    '40',
+    '41',
+    '42',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.shopping_bag_outlined))
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.cartScreen);
+              },
+              icon: const Icon(Icons.shopping_bag_outlined))
         ],
       ),
       body: Padding(
@@ -114,25 +129,37 @@ class _ProductDetailsState extends State<ProductDetails> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            child: Text('39'),
-                          ),
-                          CircleAvatar(
-                            child: Text('40'),
-                          ),
-                          CircleAvatar(
-                            child: Text('41'),
-                          ),
-                          CircleAvatar(
-                            child: Text('42'),
-                          ),
-                          CircleAvatar(
-                            child: Text('43'),
-                          ),
-                        ],
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.1,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedSizeItem = index;
+                                  });
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: selectedSizeItem == index
+                                      ? CustomColors.primary500
+                                      : CustomColors.primary200,
+                                  child: Text(
+                                    sizeItem[index],
+                                    style: TextStyle(
+                                        color: selectedSizeItem != index
+                                            ? CustomColors.primary500
+                                            : CustomColors.primary0,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) => SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.05,
+                                ),
+                            itemCount: sizeItem.length),
                       ),
                       const SizedBox(
                         height: 30,
@@ -164,41 +191,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CircleAvatar(),
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.04,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('User name'),
-                              const Icon(
-                                Icons.star,
-                                size: 20,
-                                color: CustomColors.starColor,
-                              ),
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width / 1.42,
-                                child: const Text(
-                                  'Perfect for keeping your feet dry and warm in damp conditions. ',
-                                  overflow: TextOverflow.visible,
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                      const ReviewCard(),
                       const SizedBox(
                         height: 16,
                       ),
                       SizedBox(
                         width: MediaQuery.sizeOf(context).width,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.reviewScreen);
+                            },
                             child: Text(
                               'See all reviews'.toUpperCase(),
                             )),
@@ -209,56 +212,10 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ),
             Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Price',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: CustomColors.primary300),
-                          ),
-                          Text(
-                            '\$123.00',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge
-                                ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: CustomColors.primary500),
-                          ),
-                        ],
-                      ),
-                      ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(CustomColors.primary500),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Add to Cart',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                  color: CustomColors.primary100,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              // flex: 1,
+              child: PriceAndButton(
+                quantity: quantity,
+                screen: '',
               ),
             ),
           ],

@@ -18,11 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
     'Adidas',
     'Jordan',
     'Reebok',
-    'All',
-    'Nike',
-    'Adidas',
-    'Jordan',
-    'Reebok',
   ];
   @override
   Widget build(BuildContext context) {
@@ -42,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.cartScreen);
+                      },
                       icon: const Icon(Icons.shopping_bag_outlined),
                     ),
                   ],
@@ -79,7 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
         label: Text('Filter',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: CustomColors.primary100, fontWeight: FontWeight.bold)),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.filterScreen);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
